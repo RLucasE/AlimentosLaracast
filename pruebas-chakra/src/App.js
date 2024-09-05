@@ -3,6 +3,7 @@ import * as React from 'react'
 import { ChakraProvider } from '@chakra-ui/react'
 import { Input } from '@chakra-ui/react'
 import { useState } from 'react'
+import axios from 'axios';
 import {
   FormControl,
   FormLabel,
@@ -28,6 +29,23 @@ function App() {
   }
   const isError = (input === '' && isTouched)
 
+  const [data, setData] = useState(null);
+
+  const sendData = async () => {
+    try {
+      const response = await axios.post('http://localhost/api.php', {
+        key: 'value'
+      });
+      setData(response.data);
+    } catch (error) {
+      console.error('Error al enviar los datos', error);
+    }
+  };
+
+  const handleSubbmit = () => {
+    
+  }
+
 
   return (
     <ChakraProvider>
@@ -35,7 +53,7 @@ function App() {
       <div className='main-top-container'>
 
         <FormControl className='container margin-block' >
-
+        
           <div className='item'>
             <Input placeholder='Nombre' className='space' />
             <Input placeholder='Apellido' className='space' />
@@ -80,9 +98,14 @@ function App() {
           </div>
           <Button mt={4} onClick={() => setIsTouched(true)}>
             Submit
-          </Button>
+          </Button> 
+
+
 
         </FormControl>
+
+        <button onClick={sendData}>Enviar Datos</button>
+        {data && <pre>{JSON.stringify(data, null, 2)}</pre>}
 
       </div>
 
