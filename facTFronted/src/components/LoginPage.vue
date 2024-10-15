@@ -3,7 +3,7 @@
 
 
 import { ref } from 'vue';
-import axios from "@/lib/Axios"
+import axios from "@/lib/axios"
 
 const form = ref({
     email: null,
@@ -12,8 +12,10 @@ const form = ref({
 
 async function handleSubmit() {
 
-
-    await axios.get("http://127.0.0.1:8000/sanctum/csrf-cookie");
+    axios.get('http://127.0.0.1:8000/sanctum/csrf-cookie').then(response => {
+        // Login...
+        axios.post("http://127.0.0.1:8000/login")
+    });
 
 
     // try {
