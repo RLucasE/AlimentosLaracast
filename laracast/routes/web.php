@@ -9,8 +9,9 @@ Route::get('/', function () {
 });
 
 Route::get('/jobs', function () {
+    $jobs = Job::with('employer')->simplePaginate(8);
     return view('jobs', [
-        'jobs' => Job::All()
+        'jobs' => $jobs
     ]);
 });
 
