@@ -2,12 +2,13 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UserType>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Offer>
  */
-class UserTypeFactory extends Factory
+class OfferFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,7 +19,9 @@ class UserTypeFactory extends Factory
     {
         return [
             //
-            'user_type' => fake()->numberBetween(0, 1),
+            'user_id' => User::factory(),
+            'description' => fake()->text()
+
         ];
     }
 }
