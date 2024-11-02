@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Offer;
 use App\Models\User;
 use App\Models\UserType;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
@@ -32,5 +33,7 @@ class DatabaseSeeder extends Seeder
         ])->make();
 
         User::factory(20)->create();
+
+        Offer::factory(20)->create();
     }
 }

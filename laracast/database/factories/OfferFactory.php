@@ -19,7 +19,7 @@ class OfferFactory extends Factory
     {
         return [
             //
-            'user_id' => User::factory(),
+            'user_num' => User::inRandomOrder()->first()->id,
             'description' => fake()->text()
 
         ];
