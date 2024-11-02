@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\UserType;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -15,9 +16,21 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        UserType::factory()->create([
+            'user_type' => 'Com',
+            'description' => 'Usurio Comprador'
+        ])->make();
+
+        UserType::factory()->create([
+            'user_type' => 'Vend',
+            'description' => 'Usurio Vendedor'
+        ])->make();
+
+        UserType::factory()->create([
+            'user_type' => 'Adm',
+            'description' => 'Usurio Administradaor'
+        ])->make();
+
+        User::factory(20)->create();
     }
 }

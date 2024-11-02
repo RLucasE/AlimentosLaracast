@@ -15,7 +15,10 @@ return new class extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignIdFor(App\Models\UserType::class);
+            $table->string('user_type');
+            $table->foreign('user_type')->references('user_type')->on('user_types')
+                ->onDelete('cascade')
+                ->onUpdate('cascade');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');

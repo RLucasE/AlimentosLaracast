@@ -14,7 +14,8 @@ return new class extends Migration
     {
         Schema::create('offers', function (Blueprint $table) {
             $table->id();
-            $table->foreignIdFor(User::class);
+            $table->bigInteger('user_num')->unsigned();
+            $table->foreign("user_num")->references('id')->on('users');
             $table->string('description');
             $table->timestamps();
         });

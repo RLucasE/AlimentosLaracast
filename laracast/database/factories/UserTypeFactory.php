@@ -18,7 +18,8 @@ class UserTypeFactory extends Factory
     {
         return [
             //
-            'user_type' => fake()->numberBetween(0, 1),
+            'user_type' => fake()->text(maxNbChars: 5),
+            'description' => "texto de prueba",
         ];
     }
 }
