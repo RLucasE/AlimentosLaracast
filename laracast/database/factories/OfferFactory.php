@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Alimento;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -20,8 +21,8 @@ class OfferFactory extends Factory
         return [
             //
             'user_num' => User::inRandomOrder()->first()->id,
-            'description' => fake()->text()
-
+            'description' => fake()->text(),
+            'alimento_num' => Alimento::inRandomOrder()->first()->id
         ];
     }
 }
