@@ -16,4 +16,14 @@ class Alimento extends Model
     protected $fillable = [
         'tipo'
     ];
+
+    public function AlimentoState()
+    {
+        return $this->belongsTo(AlimentoState::class, 'alimento_state');
+    }
+
+    public function AlimentoType()
+    {
+        return $this->belongsTo(AlimentoType::class, 'alimento_type');
+    }
 }

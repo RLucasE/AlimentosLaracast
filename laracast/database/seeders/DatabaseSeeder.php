@@ -52,11 +52,33 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Alimento::factory()->create([
-            'name' => 'Coca Cola'
+            'name' => 'Coca Cola',
+            'alimento_state' => 1,
+            'alimento_type' => 1
         ]);
 
         Alimento::factory()->create([
-            'name' => 'Dulce de Leche Ilolay'
+            'name' => 'Dulce de Leche Ilolay',
+            'alimento_state' => 1,
+            'alimento_type' => 1
+        ]);
+
+        Alimento::factory()->create([
+            'name' => 'Leche',
+            'alimento_state' => 2,
+            'alimento_type' => 1
+        ]);
+
+        Alimento::factory()->create([
+            'name' => 'Jamon',
+            'alimento_state' => 1,
+            'alimento_type' => 2
+        ]);
+
+        Alimento::factory()->create([
+            'name' => 'Speed',
+            'alimento_state' => 1,
+            'alimento_type' => 1
         ]);
 
         User::factory(count: 20)->create();

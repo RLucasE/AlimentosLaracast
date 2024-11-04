@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AlimentoController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Models\Job;
@@ -14,6 +15,8 @@ Route::get('/jobs', function () {
         'jobs' => $jobs
     ]);
 });
+
+Route::get('/foods', [AlimentoController::class, 'show']);
 
 Route::get('/jobs/create', function () {
     return view('jobs.create');
