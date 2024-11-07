@@ -14,7 +14,9 @@ class Alimento extends Model
     protected $table = 'alimentos';
 
     protected $fillable = [
-        'tipo'
+        'name',
+        'alimento_state',
+        'alimento_type'
     ];
 
     public function AlimentoState()

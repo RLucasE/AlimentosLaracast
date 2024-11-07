@@ -16,7 +16,14 @@ Route::get('/jobs', function () {
     ]);
 });
 
-Route::get('/foods', [AlimentoController::class, 'show']);
+Route::get('/foods', [AlimentoController::class, 'index']);
+Route::get('/foods/create', [AlimentoController::class, 'create']);
+Route::get('/foods/{id}', [AlimentoController::class, 'show']);
+Route::patch('/foods/{id}', [AlimentoController::class, 'update']);
+Route::delete('/foods/{id}', [AlimentoController::class, 'delete']);
+Route::get('/foods/{id}/edit', [AlimentoController::class, 'edit']);
+Route::post('/foods', [AlimentoController::class, 'store']);
+
 
 Route::get('/jobs/create', function () {
     return view('jobs.create');
