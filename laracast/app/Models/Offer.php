@@ -14,4 +14,9 @@ class Offer extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function alimento()
+    {
+        return $this->belongsTo(Alimento::class, 'alimento_num');
+    }
 }

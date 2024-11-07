@@ -1,9 +1,11 @@
 <?php
 
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\OfferController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Models\Job;
+
 
 Route::get('/', function () {
     return view('home');
@@ -23,6 +25,9 @@ Route::patch('/foods/{id}', [AlimentoController::class, 'update']);
 Route::delete('/foods/{id}', [AlimentoController::class, 'delete']);
 Route::get('/foods/{id}/edit', [AlimentoController::class, 'edit']);
 Route::post('/foods', [AlimentoController::class, 'store']);
+
+Route::get('/offers', [OfferController::class, 'indexAll']);
+Route::get('/offersMy', [OfferController::class, 'indexMy']);
 
 
 Route::get('/jobs/create', function () {
