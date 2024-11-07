@@ -81,8 +81,16 @@ class DatabaseSeeder extends Seeder
             'alimento_type' => 1
         ]);
 
+
         User::factory(count: 20)->create();
 
+        Offer::factory()->create([
+            'user_num' => 1
+        ]);
+
+        Offer::factory()->create([
+            'user_num' => 1
+        ]);
         Offer::factory(10)->create();
     }
 }

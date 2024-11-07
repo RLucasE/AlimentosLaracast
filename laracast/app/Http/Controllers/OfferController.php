@@ -16,6 +16,14 @@ class OfferController extends Controller
         ]);
     }
 
+    public function showOffer($id)
+    {
+        $offer = Offer::find($id);
+        return view('offers.show', [
+            'offer' => $offer
+        ]);
+    }
+
     public function indexMy()
     {
         //Hay que identificar la sesion del usuario y devolverle sus ofertas

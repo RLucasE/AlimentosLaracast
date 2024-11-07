@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('alimento_num')->unsigned();
             $table->foreign('alimento_num')->references('id')->on('alimentos');
             $table->string('description');
+            $table->bigInteger('price');
             $table->timestamps();
         });
     }

@@ -22,6 +22,7 @@ class OfferFactory extends Factory
             //
             'user_num' => User::inRandomOrder()->first()->id,
             'description' => fake()->text(),
+            'price' => fake()->numberBetween(300, 1500),
             'alimento_num' => Alimento::inRandomOrder()->first()->id
         ];
     }
