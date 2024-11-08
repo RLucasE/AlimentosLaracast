@@ -20,6 +20,7 @@ return new class extends Migration
             $table->foreign('alimento_num')->references('id')->on('alimentos');
             $table->string('description');
             $table->bigInteger('price');
+            $table->bigInteger('cant');
             $table->timestamps();
         });
     }

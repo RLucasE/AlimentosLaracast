@@ -8,7 +8,8 @@
     <div class="mt-4 pl-2 mb-2 flex justify-between ">
         <div>
             <p class="text-lg font-semibold text-gray-900 mb-0">{{ $offer->alimento->name }}</p>
-            <p class="text-md text-gray-800 mt-0">{{ $offer->price }}</p>
+            <p class="text-md text-gray-800 mt-0">${{ $offer->price }}</p>
+            <p class="text-md text-gray-800 mt-0">Cantidad: {{ $offer->cant }}</p>
         </div>
     </div>
 </div>

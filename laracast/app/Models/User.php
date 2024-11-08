@@ -56,4 +56,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Offer::class);
     }
+
+    public function offerCarts()
+    {
+        return $this->belongsToMany(Offer::class, table: 'carts', foreignPivotKey: 'comp_num', relatedPivotKey: 'offer_num');
+    }
 }

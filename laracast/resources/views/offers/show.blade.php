@@ -36,8 +36,8 @@
                 <h2 class="mb-2 leading-tight tracking-tight font-bold text-gray-800 text-2xl md:text-3xl">
                     {{ $offer->alimento->name }}
                 </h2>
-                <p class="text-gray-500 text-sm">By <a href="#" class="text-indigo-600 hover:underline">ABC
-                        Company</a></p>
+                <p class="text-gray-500 text-sm">By <a href="#"
+                        class="text-indigo-600 hover:underline">{{ $offer->user->name }}</a></p>
 
                 <div class="flex items-center space-x-4 my-4">
                     <div>
@@ -55,32 +55,37 @@
                     {{ $offer->description }}
                 </p>
 
-                <div class="flex py-4 space-x-4">
-                    <div class="relative">
-                        <div
-                            class="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">
-                            Qty</div>
-                        <select
-                            class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
-                        </select>
+                <form action="/offers/{{ $offer->id }}/addoffercart" method="POST">
+                    @csrf <!-- Agregar token CSRF -->
+                    <div class="flex py-4 space-x-4">
+                        <div class="relative">
+                            <label for="cant_offer"
+                                class="text-center left-0 pt-2 right-0 absolute block text-xs uppercase text-gray-400 tracking-wide font-semibold">Cant</label>
+                            <select id="cant_offer" name="cant_offer"
+                                class="cursor-pointer appearance-none rounded-xl border border-gray-200 pl-4 pr-8 h-14 flex items-end pb-1">
+                                @for ($i = 1; $i <= $offer->cant; $i++)
+                                    <option value="{{ $i }}">{{ $i }}</option>
+                                @endfor
+                            </select>
 
-                        <svg class="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
-                        </svg>
+                            <svg class="w-5 h-5 text-gray-400 absolute right-0 bottom-0 mb-2 mr-2"
+                                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                            </svg>
+                        </div>
+
+                        {{-- Falta validar que no hayan cambiado el id --}}
+                        <input type="hidden" name="vend_num" value="{{ $offer->user_num }}">
+
+
+                        <button type="submit"
+                            class="h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white">
+                            Agregar al carro
+                        </button>
                     </div>
-
-                    <button type="button"
-                        class="h-14 px-6 py-2 font-semibold rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white">
-                        Add to Cart
-                    </button>
-                </div>
+                </form>
             </div>
         </div>
     </div>
