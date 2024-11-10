@@ -32,9 +32,4 @@ class OfferController extends Controller
             'offersMy' => $offers
         ]);
     }
-
-    public function showCarrito()
-    {
-        return view('offers.carrito');
-    }
 }

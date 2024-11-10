@@ -18,4 +18,9 @@ class Cart extends Model
         'vend_num',
         'cant'
     ];
+
+    public function offer()
+    {
+        return $this->belongsTo(Offer::class, 'offer_num', 'id');  // Cambia 'offer_num' y 'id' según los nombres correctos de tus campos
+    }
 }

@@ -2,11 +2,6 @@
     <x-slot:heading>
         Reservar el producto
     </x-slot:heading>
-    <meta charset="UTF-8">
-    <link rel='stylesheet' href='https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css'>
-    <link rel='stylesheet'
-        href='https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,400;0,600;0,700;1,400&amp;display=swap'>
-    <link rel="stylesheet" href="./style.css">
 
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-6">
         <div class="flex flex-col md:flex-row -mx-4">

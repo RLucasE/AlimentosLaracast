@@ -30,9 +30,9 @@ Route::post('/foods', [AlimentoController::class, 'store']);
 Route::get('/offers', [OfferController::class, 'indexAll']);
 Route::get('/offersMy', [OfferController::class, 'indexMy']);
 Route::get('/offers/{id}', [OfferController::class, 'showOffer']);
-Route::get('/offerCarrito', [OfferController::class, 'showCarrito']);
 
 
+Route::get('/offerCarrito', [CartController::class, 'showCarrito']);
 Route::post('/offers/{id}/addoffercart', [CartController::class, 'addoffercart']);
 
 Route::get('/jobs/create', function () {
