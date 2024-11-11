@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\AdressController;
 use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OfferController;
+use App\Models\Adress;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Models\Job;
@@ -30,10 +32,15 @@ Route::post('/foods', [AlimentoController::class, 'store']);
 Route::get('/offers', [OfferController::class, 'indexAll']);
 Route::get('/offersMy', [OfferController::class, 'indexMy']);
 Route::get('/offers/{id}', [OfferController::class, 'showOffer']);
-
+Route::get('/myOffer/{id}', [OfferController::class, 'showMyOffer']);
 
 Route::get('/offerCarrito', [CartController::class, 'showCarrito']);
 Route::post('/offers/{id}/addoffercart', [CartController::class, 'addoffercart']);
+
+
+Route::get('/myAdresses', [AdressController::class, 'myAdresses']);
+Route::get('/adress/create', [AdressController::class, 'create']);
+
 
 Route::get('/jobs/create', function () {
     return view('jobs.create');

@@ -32,4 +32,11 @@ class OfferController extends Controller
             'offersMy' => $offers
         ]);
     }
+
+    public function showMyOffer($id)
+    {
+        //Hay que identificar la sesion del usuario y devolverle sus ofertas
+
+        return view('offers.showMyOffer');
+    }
 }

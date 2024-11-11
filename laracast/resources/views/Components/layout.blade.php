@@ -34,16 +34,16 @@
                         </button>
                         <!-- ./ Menu Trigger -->
 
-                        <a href="#" class="font-bold text-gray-700 text-2xl">Shop.</a>
+                        <a href="#" class="font-bold text-gray-700 text-2xl">#</a>
 
                         <div class="hidden md:flex space-x-3 flex-1 lg:ml-8">
                             {{-- <a href="#"
                                 class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Electronics</a>
                                     --}}
-                            <x-nav-link href="/offersMy" :active="request()->is('offersMy')">MyOffers</x-nav-link>
+                            <x-nav-link href="/offersMy" :active="request()->is('offersMy')">Mis Ofertas</x-nav-link>
                             <x-nav-link href="/offers" :active="request()->is('offers')">Ofertas</x-nav-link>
                             <x-nav-link href="/foods" :active="request()->is('foods')">Comidas</x-nav-link>
-                            <x-nav-link href="/jobs" :active="request()->is('jobs')">Jobs</x-nav-link>
+                            <x-nav-link href="/jobs" :active="request()->is('jobs')">Direcciones</x-nav-link>
                         </div>
 
                         <div class="flex items-center space-x-4">
