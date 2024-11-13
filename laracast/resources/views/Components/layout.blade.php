@@ -40,10 +40,26 @@
                             {{-- <a href="#"
                                 class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Electronics</a>
                                     --}}
-                            <x-nav-link href="/offersMy" :active="request()->is('offersMy')">Mis Ofertas</x-nav-link>
-                            <x-nav-link href="/offers" :active="request()->is('offers')">Ofertas</x-nav-link>
-                            <x-nav-link href="/foods" :active="request()->is('foods')">Comidas</x-nav-link>
-                            <x-nav-link href="/jobs" :active="request()->is('jobs')">Direcciones</x-nav-link>
+
+                            @can('isVend', \App\Models\User::class)
+                                <!-- The current user can update the post... -->
+                                <x-nav-link href="/offersMy" :active="request()->is('offersMy')">Mis Ofertas</x-nav-link>
+                                <x-nav-link href="/myBusiness" :active="request()->is('myBusiness')">Mi Negocio</x-nav-link>
+                                <x-nav-link href="/clients" :active="request()->is('clients')">Clientes</x-nav-link>
+                            @endcan
+
+                            @can('isCom', \App\Models\User::class)
+                                <!-- El botón solo se muestra si el usuario es administrador -->
+                                <x-nav-link href="/offers" :active="request()->is('offers')">Ofertas</x-nav-link>
+                            @endcan
+
+                            @can('isAdm', \App\Models\User::class)
+                                <!-- El botón solo se muestra si el usuario es administrador -->
+                                <x-nav-link href="/foods" :active="request()->is('foods')">Comidas</x-nav-link>
+                                <x-nav-link href="/jobs" :active="request()->is('jobs')">Direcciones</x-nav-link>
+                            @endcan
+
+
                         </div>
 
                         <div class="flex items-center space-x-4">
