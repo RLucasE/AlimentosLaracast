@@ -4,6 +4,8 @@ use App\Http\Controllers\AdressController;
 use App\Http\Controllers\AlimentoController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\SessionController;
 use App\Models\Adress;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
@@ -11,8 +13,15 @@ use App\Models\Job;
 
 
 Route::get('/', function () {
-    return view('home');
+    return view('landing');
 });
+
+Route::get('/register', [RegisterController::class, 'register']);
+Route::post('/register', [RegisterController::class, 'store']);
+
+Route::get('/login', [SessionController::class, 'login']);
+Route::post('/login', [SessionController::class, 'newSession']);
+Route::post('/logout', [SessionController::class, 'destroy']);
 
 Route::get('/jobs', function () {
     $jobs = Job::with('employer')->latest()->simplePaginate(8);

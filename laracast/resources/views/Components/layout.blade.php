@@ -70,6 +70,18 @@
                                 <span class="pl-1 text-gray-500 text-md">0</span>
                             </a>
 
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <button href="#" title=""
+                                    class="text-base font-medium text-gray-900 transition-all duration-200 rounded focus:outline-none font-pj hover:text-opacity-50 focus:ring-1 focus:ring-gray-900 focus:ring-offset-2"
+                                    type="submit">
+                                    Cerrar Sesion </button>
+                            </form>
+
+
+
+
+
                             <button type="button"
                                 class="hidden md:block w-10 h-10 rounded-lg bg-gray-100 border border-gray-200 flex justify-center items-center">
                                 <img src="https://avatars.dicebear.com/api/bottts/2.svg" alt="bottts" width="28"
