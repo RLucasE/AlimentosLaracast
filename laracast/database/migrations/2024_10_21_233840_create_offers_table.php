@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('description');
             $table->bigInteger('offer_adress')->unsigned();
             $table->foreign('offer_adress')->references('id')->on('adresses');
+            $table->string('estado');
+            $table->foreign('estado')->references('offer_state')->on('offer_states');
             $table->bigInteger('price');
             $table->bigInteger('cant');
             $table->timestamps();

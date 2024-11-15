@@ -12,6 +12,8 @@ use App\Models\UserType;
 use Illuminate\Database\Seeder;
 use App\Models\Alimento;
 use App\Models\AlimentoType;
+use App\Models\offer_state;
+use App\Models\OfferState;
 
 class DatabaseSeeder extends Seeder
 {
@@ -127,9 +129,20 @@ class DatabaseSeeder extends Seeder
         $vendId = User::where('email', 'vendedor@gmail.com')->first()->id;
         $venAdress = Adress::where('user_num', $vendId)->first()->id;
 
+        OfferState::factory()->create([
+            'offer_state' => 'act',
+            'description' => 'La oferta se encuentra disponible para la venta'
+        ]);
+
+        OfferState::factory()->create([
+            'offer_state' => 'cerr',
+            'description' => 'La oferta está cerrada'
+        ]);
+
         Offer::factory()->create([
             'user_num' => $vendId,
-            'offer_adress' => $venAdress
+            'offer_adress' => $venAdress,
+            'estado' => 'act'
         ]);
     }
 }

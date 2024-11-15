@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adress;
+use App\Models\Alimento;
+use App\Models\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -48,6 +50,21 @@ class BusinessController extends Controller
 
     public function create()
     {
-        return view('business.createOffer');
+        $alimentos = Alimento::all();
+        return view('business.createOffer', [
+            "alimentos" => $alimentos
+        ]);
+    }
+
+    public function storeOffer(Request $request)
+    {
+        dd($request);
+    }
+
+    public function clients()
+    {
+        $carts = Cart::where('vend_num', Auth::user()->id)->get();
+
+        return view('business.clients');
     }
 }
