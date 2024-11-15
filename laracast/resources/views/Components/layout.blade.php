@@ -40,7 +40,6 @@
                             {{-- <a href="#"
                                 class="px-2 py-2 hover:bg-gray-100 rounded-lg text-gray-400 hover:text-gray-600">Electronics</a>
                                     --}}
-
                             @can('isVend', \App\Models\User::class)
                                 <!-- The current user can update the post... -->
                                 <x-nav-link href="/offersMy" :active="request()->is('offersMy')">Mis Ofertas</x-nav-link>
@@ -51,15 +50,17 @@
                             @can('isCom', \App\Models\User::class)
                                 <!-- El botón solo se muestra si el usuario es administrador -->
                                 <x-nav-link href="/offers" :active="request()->is('offers')">Ofertas</x-nav-link>
+                                @can('new-adress', \App\Models\User::class)
+                                    <x-nav-link href="/newVend" :active="request()->is('newVend')">Ser Vendedor</x-nav-link>
+                                @endcan
                             @endcan
 
                             @can('isAdm', \App\Models\User::class)
                                 <!-- El botón solo se muestra si el usuario es administrador -->
                                 <x-nav-link href="/foods" :active="request()->is('foods')">Comidas</x-nav-link>
-                                <x-nav-link href="/jobs" :active="request()->is('jobs')">Direcciones</x-nav-link>
+                                <x-nav-link href="/adresses" :active="request()->is('adresses')">Direcciones</x-nav-link>
+                                <x-nav-link href="/jobs" :active="request()->is('jobs')">Usuarios</x-nav-link>
                             @endcan
-
-
                         </div>
 
                         <div class="flex items-center space-x-4">

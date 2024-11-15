@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Offer;
+use Illuminate\Support\Facades\Auth;
 
 class OfferController extends Controller
 {
@@ -27,7 +28,8 @@ class OfferController extends Controller
     public function indexMy()
     {
         //Hay que identificar la sesion del usuario y devolverle sus ofertas
-        $offers = Offer::where('user_num', '1')->with('alimento')->get();
+
+        $offers = Offer::where('user_num', Auth::user()->id)->with('alimento')->get();
         return view('offers.indexMy', [
             'offersMy' => $offers
         ]);

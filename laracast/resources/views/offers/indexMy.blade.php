@@ -2,13 +2,7 @@
     <x-slot:heading>
         <div class="flex space-x-4">
             <div>
-                <x-button href='/adress/create'>Registrar Direccion</x-button>
-            </div>
-            <div>
-                <x-button href='/myAdresses'>Mis direcciones</x-button>
-            </div>
-            <div>
-                <x-button href='/foods/create'>Nueva oferta</x-button>
+                <x-button href='/createOffer'>Nueva oferta</x-button>
             </div>
         </div>
     </x-slot:heading>

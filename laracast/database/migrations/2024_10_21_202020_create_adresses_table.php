@@ -18,8 +18,10 @@ return new class extends Migration
             $table->string('calle');
             $table->bigInteger('numero');
             $table->bigInteger('piso');
-            $table->bigInteger('estado')->unsigned();
-            $table->foreign('estado')->references('id')->on('estado_dirs');
+            $table->string('estado');
+            $table->foreign('estado')->references('estado_dir')->on('estado_dirs');
+            $table->bigInteger('user_num')->unsigned();
+            $table->foreign('user_num')->references('id')->on('users');
             $table->timestamps();
         });
     }

@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\admController;
 use App\Http\Controllers\AdressController;
 use App\Http\Controllers\AlimentoController;
+use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RegisterController;
@@ -38,6 +40,9 @@ Route::middleware('auth') // Aplica el middleware de autenticación
                 Route::delete('/foods/{id}', [AlimentoController::class, 'delete']);
                 Route::get('/foods/{id}/edit', [AlimentoController::class, 'edit']);
                 Route::post('/foods', [AlimentoController::class, 'store']);
+
+                Route::get('/adresses', [admController::class, 'adresses']);
+                Route::patch('/changeStatusAdress', [admController::class, 'changeStatusAdress']);
             });
     });
 
@@ -48,12 +53,16 @@ Route::middleware('auth') // Aplica el middleware de autenticación
         // Este grupo aplica la autorización de "isAdm" para todas las rutas dentro de él
         Route::get('/offers', [OfferController::class, 'indexAll']);
         Route::get('/offers/{id}', [OfferController::class, 'showOffer']);
-
+        Route::get('/newVend', [BusinessController::class, 'newVend']);
+        Route::post('/newVend', [BusinessController::class, 'storeDirUser']);
 
         Route::middleware('can:isVend,App\Models\User')  // Usa el middleware 'can' con la habilidad 'isAdm'
             ->group(function () {
                 Route::get('/offersMy', [OfferController::class, 'indexMy']);
                 Route::get('/myOffer/{id}', [OfferController::class, 'showMyOffer']);
+
+                Route::get('myBusiness', [BusinessController::class, 'main']);
+                Route::get('createOffer', [BusinessController::class, 'create']);
             });
     });
 

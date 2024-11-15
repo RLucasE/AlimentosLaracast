@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('offer_num')->unsigned();
             $table->foreign("offer_num")->references('id')->on('offers')->cascadeOnDelete();
-            $table->bigInteger('comp_num')->unsigned();
-            $table->foreign("comp_num")->references('id')->on('users')->cascadeOnDelete();
             $table->bigInteger('vend_num')->unsigned();
             $table->foreign("vend_num")->references('id')->on('users')->cascadeOnDelete();
+            $table->bigInteger('comp_num')->unsigned();
+            $table->foreign("comp_num")->references('id')->on('users')->cascadeOnDelete();
             $table->bigInteger('cant')->unsigned();
             $table->timestamps();
         });

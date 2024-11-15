@@ -2,7 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Adress;
 use App\Models\AlimentoState;
+use App\Models\EstadoDir;
 use App\Models\Offer;
 use App\Models\User;
 use App\Models\UserType;
@@ -81,16 +83,53 @@ class DatabaseSeeder extends Seeder
             'alimento_type' => 1
         ]);
 
-
-        User::factory(count: 20)->create();
-
-        Offer::factory()->create([
-            'user_num' => 1
+        User::factory()->create([
+            'name' => 'Lucas Ricalde',
+            'email' => "vendedor@gmail.com",
+            'password' => 387387,
+            'user_type' => 'Vend'
         ]);
 
-        Offer::factory()->create([
-            'user_num' => 1
+        User::factory()->create([
+            'name' => 'Lucas Ricalde',
+            'email' => "adm@gmail.com",
+            'password' => 387387,
+            'user_type' => 'Adm'
         ]);
-        Offer::factory(10)->create();
+
+        User::factory()->create([
+            'name' => 'Lucas Ricalde',
+            'email' => "com@gmail.com",
+            'password' => 387387,
+            'user_type' => 'Com'
+        ]);
+
+        EstadoDir::factory()->create([
+            'estado_dir' => 'Rev',
+            'description' => 'La direccion esta en revision'
+        ]);
+
+        EstadoDir::factory()->create([
+            'estado_dir' => 'Apr',
+            'description' => 'La direccion esta aprobada'
+        ]);
+
+        Adress::factory()->create([
+            'ciudad' => 'SALTA',
+            'cod_post' => 4400,
+            'calle' => 'Av. Bolivia 400',
+            'numero' => 1,
+            'piso' => 1,
+            'estado' => 'Apr',
+            'user_num' => User::where('email', 'vendedor@gmail.com')->first()
+        ]);
+
+        $vendId = User::where('email', 'vendedor@gmail.com')->first()->id;
+        $venAdress = Adress::where('user_num', $vendId)->first()->id;
+
+        Offer::factory()->create([
+            'user_num' => $vendId,
+            'offer_adress' => $venAdress
+        ]);
     }
 }

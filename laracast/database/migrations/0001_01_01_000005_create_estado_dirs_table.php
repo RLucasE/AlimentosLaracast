@@ -12,8 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('estado_dirs', function (Blueprint $table) {
-            $table->id();
-            $table->string("description");
+            $table->string('estado_dir')->primary();
+            $table->text('description');
             $table->timestamps();
         });
     }
