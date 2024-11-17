@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Adress;
 use App\Models\Alimento;
 use App\Models\Cart;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -63,11 +64,22 @@ class BusinessController extends Controller
 
     public function clients()
     {
-        $carts = Cart::where('vend_num', Auth::user()->id)->get();
-        $clients = Cart::select('comp_num')  // Seleccionamos solo el campo buyer_id
-            ->distinct()        // Aseguramos que no haya repetidos
+        $carritos = Cart::where('vend_num', Auth::user()->id)
+            ->with('offer.alimento')
             ->get();
-        dd($clients);
-        return view('business.clients');
+
+
+        $compIds = Cart::where('vend_num', Auth::user()->id)
+            ->distinct()
+            ->pluck('comp_num');
+
+        $compradores = User::whereIn('id', $compIds)
+            ->distinct()  // Aseguramos que no se repitan vendedores
+            ->get();
+
+        return view('business.clients', [
+            'compradores' => $compradores,
+            'carritos' => $carritos
+        ]);
     }
 }

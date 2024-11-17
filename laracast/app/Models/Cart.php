@@ -23,4 +23,9 @@ class Cart extends Model
     {
         return $this->belongsTo(Offer::class, 'offer_num', 'id');  // Cambia 'offer_num' y 'id' según los nombres correctos de tus campos
     }
+
+    public function vendedor()
+    {
+        return $this->belongsTo(User::class, 'vend_num', 'id');
+    }
 }

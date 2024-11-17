@@ -1,22 +1,31 @@
+@php
+    $total = 0; // Inicializa la variable para el total
+@endphp
 <div class="container mx-auto mt-10">
     <div class="flex shadow-md my-10">
         <div class="w-3/4 bg-white px-10 py-10">
             <div class="flex justify-between border-b pb-8">
-                <h1 class="font-semibold text-2xl">Shopping Cart</h1>
-                <h2 class="font-semibold text-2xl">{{ count($detalles->all()) }} Items</h2>
+                <h1 class="font-semibold text-2xl">{{ $vend->name }}</h1>
+                <h2 class="font-semibold text-2xl"> Items</h2>
             </div>
             <div class="flex mt-10 mb-5">
-                <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5">Product Details</h3>
+                <h3 class="font-semibold text-gray-600 text-xs uppercase w-2/5"> Detalles</h3>
                 <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
-                    Quantity</h3>
+                    Cantidad</h3>
                 <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
-                    Price</h3>
+                    Precio</h3>
                 <h3 class="font-semibold text-center text-gray-600 text-xs uppercase w-1/5 text-center">
                     Total</h3>
             </div>
 
-            @foreach ($detalles as $detalle)
-                <x-item-incart :detalle="$detalle" :price="$detalle->offer->price" :cant="$detalle->cant"></x-item-incart>
+            @foreach ($carts as $cart)
+                @if ($cart->vend_num === $vend->id)
+                    <x-item-incart :detalle="$cart" :price="$cart->offer->price" :cant="$cart->cant"
+                        :max="$cart->offer->cant"></x-item-incart>
+                    @php
+                        $total += $cart->offer->price * $cart->cant; // Calcula el total sumando el precio por la cantidad
+                    @endphp
+                @endif
             @endforeach
 
             <a href="#" class="flex font-semibold text-indigo-600 text-sm mt-10">
@@ -30,31 +39,16 @@
         </div>
 
         <div id="summary" class="w-1/4 px-8 py-10">
-            <h1 class="font-semibold text-2xl border-b pb-8">Order Summary</h1>
-            <div class="flex justify-between mt-10 mb-5">
-                <span class="font-semibold text-sm uppercase">{{ count($detalles->all()) }} items</span>
-                <span class="font-semibold text-sm">590$</span>
+            <h1 class="font-semibold text-2xl border-b pb-8">Resumen</h1>
+
+            <div class="flex font-semibold justify-between py-6 text-sm uppercase">
+                <span>Total</span>
+                <span>{{ $total }}</span>
             </div>
-            <div>
-                <label class="font-medium inline-block mb-3 text-sm uppercase">Shipping</label>
-                <select class="block p-2 text-gray-600 w-full text-sm">
-                    <option>Standard shipping - $10.00</option>
-                </select>
-            </div>
-            <div class="py-10">
-                <label for="promo" class="font-semibold inline-block mb-3 text-sm uppercase">Promo
-                    Code</label>
-                <input type="text" id="promo" placeholder="Enter your code" class="p-2 text-sm w-full">
-            </div>
-            <button class="bg-red-500 hover:bg-red-600 px-5 py-2 text-sm text-white uppercase">Apply</button>
-            <div class="border-t mt-8">
-                <div class="flex font-semibold justify-between py-6 text-sm uppercase">
-                    <span>Total cost</span>
-                    <span>$600</span>
-                </div>
-                <button
-                    class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Checkout</button>
-            </div>
+            <button
+                class="bg-indigo-500 font-semibold hover:bg-indigo-600 py-3 text-sm text-white uppercase w-full">Actualizar
+                Reserva</button>
+
         </div>
 
     </div>

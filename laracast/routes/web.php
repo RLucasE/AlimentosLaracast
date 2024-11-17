@@ -75,6 +75,7 @@ Route::middleware('auth') // Aplica el middleware de autenticación
         // Este grupo aplica la autorización de "isAdm" para todas las rutas dentro de él
         Route::get('/offerCarrito', [CartController::class, 'showCarrito']);
         Route::post('/offers/{id}/addoffercart', [CartController::class, 'addoffercart']);
+        Route::delete('/deleteDetail', [CartController::class, "deleteDetail"]);
     });
 
 Route::middleware('auth') // Aplica el middleware de autenticación

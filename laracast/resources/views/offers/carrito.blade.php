@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:heading>
-        @foreach ($carritoDetailsGrouped as $carrito)
-            <x-vend-carrito :detalles="$detalleCarts"></x-vend-carrito>
+        @foreach ($vendedores as $vendedor)
+            <x-vend-carrito :vend="$vendedor" :carts="$detalleCarts"></x-vend-carrito>
         @endforeach
     </x-slot:heading>
     <!-- component -->
