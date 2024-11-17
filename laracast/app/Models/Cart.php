@@ -16,7 +16,8 @@ class Cart extends Model
         'offer_num',
         'comp_num',
         'vend_num',
-        'cant'
+        'cant',
+        'estado'
     ];
 
     public function offer()

@@ -82,4 +82,16 @@ class BusinessController extends Controller
             'carritos' => $carritos
         ]);
     }
+
+    public function confirm(Request $request)
+    {
+        $carritoIds = $request->input('carrito_ids');
+        $carritos = Cart::whereIn('id', $carritoIds)->get();
+
+        $todosActivos = $carritos->every(function ($carrito) {
+            return $carrito->estado === 'ready';
+        });
+
+        dd($todosActivos);
+    }
 }

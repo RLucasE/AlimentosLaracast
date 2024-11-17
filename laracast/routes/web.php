@@ -65,6 +65,7 @@ Route::middleware('auth') // Aplica el middleware de autenticación
                 Route::get('/createOffer', [BusinessController::class, 'create']);
                 Route::post('/createOffer', [BusinessController::class, 'storeOffer']);
                 Route::get('/clients', [BusinessController::class, 'clients']);
+                Route::post('/confirm', [BusinessController::class, 'confirm']);
             });
     });
 

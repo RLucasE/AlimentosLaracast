@@ -12,6 +12,7 @@ use App\Models\UserType;
 use Illuminate\Database\Seeder;
 use App\Models\Alimento;
 use App\Models\AlimentoType;
+use App\Models\CartStatus;
 use App\Models\offer_state;
 use App\Models\OfferState;
 
@@ -86,22 +87,29 @@ class DatabaseSeeder extends Seeder
         ]);
 
         User::factory()->create([
-            'name' => 'Lucas Ricalde',
+            'name' => 'Lucas vendedor',
             'email' => "vendedor@gmail.com",
             'password' => 387387,
             'user_type' => 'Vend'
         ]);
 
         User::factory()->create([
-            'name' => 'Lucas Ricalde',
+            'name' => 'Lucas admin',
             'email' => "adm@gmail.com",
             'password' => 387387,
             'user_type' => 'Adm'
         ]);
 
         User::factory()->create([
-            'name' => 'Lucas Ricalde',
+            'name' => 'Lucas com1',
             'email' => "com@gmail.com",
+            'password' => 387387,
+            'user_type' => 'Com'
+        ]);
+
+        User::factory()->create([
+            'name' => 'Lucas com2',
+            'email' => "com2@gmail.com",
             'password' => 387387,
             'user_type' => 'Com'
         ]);
@@ -143,6 +151,23 @@ class DatabaseSeeder extends Seeder
             'user_num' => $vendId,
             'offer_adress' => $venAdress,
             'estado' => 'act'
+        ]);
+
+        Offer::factory()->create([
+            'user_num' => $vendId,
+            'offer_adress' => $venAdress,
+            'estado' => 'act'
+        ]);
+
+        CartStatus::factory()->create([
+            "cart_status" => "ready",
+            "description" => "Está listo para ser vendido"
+        ]);
+
+
+        CartStatus::factory()->create([
+            "cart_status" => "noSuf",
+            "description" => "Está listo para ser vendido"
         ]);
     }
 }

@@ -20,6 +20,8 @@ return new class extends Migration
             $table->bigInteger('comp_num')->unsigned();
             $table->foreign("comp_num")->references('id')->on('users')->cascadeOnDelete();
             $table->bigInteger('cant')->unsigned();
+            $table->string('estado');
+            $table->foreign('estado')->references('cart_status')->on('cart_statuses');
             $table->timestamps();
         });
     }

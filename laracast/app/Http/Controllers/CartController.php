@@ -26,7 +26,8 @@ class CartController extends Controller
             'offer_num' => $id, //falta validar que la oferta exista en nuestra base de datos
             'comp_num' => Auth::user()->id,
             'vend_num' => request('vend_num'),
-            'cant' => request('cant_offer')
+            'cant' => request('cant_offer'),
+            'estado' => 'ready'
         ]);
 
         //falta cambiar el stock en la oferta

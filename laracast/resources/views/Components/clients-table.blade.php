@@ -59,7 +59,14 @@
 
                 </table>
                 <div class="mt-4 ml-4">
-                    <x-button>Confirmar Compra</x-button>
+                    <form action="/confirm" method="POST">
+                        @csrf
+                        @foreach ($carritos as $carrito)
+                            <input type="hidden" name="carrito_ids[]" value="{{ $carrito->id }}">
+                        @endforeach
+                        <x-button :submit="true">Confirmar Compra</x-button>
+                    </form>
+
                     <x-button>Cancelar Compra</x-button>
                 </div>
             </div>
