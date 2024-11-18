@@ -2,8 +2,10 @@
 
 namespace App\Mail;
 
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
@@ -16,7 +18,7 @@ class OrderCreated extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct()
+    public function __construct(public Order $order,  public Collection $orderDetails)
     {
         //
     }

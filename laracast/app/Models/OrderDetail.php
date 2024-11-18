@@ -16,4 +16,9 @@ class OrderDetail extends Model
         'cant',
         'price'
     ];
+
+    public function offerT()
+    {
+        return $this->belongsTo(Offer::class, 'offer', 'id');
+    }
 }

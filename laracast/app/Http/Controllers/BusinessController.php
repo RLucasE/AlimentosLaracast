@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCreated;
 use App\Models\Adress;
 use App\Models\Alimento;
 use App\Models\Cart;
@@ -13,6 +14,7 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
+use Illuminate\Support\Facades\Mail;
 
 class BusinessController extends Controller
 {
@@ -110,6 +112,13 @@ class BusinessController extends Controller
                     'price' => $carrito->offer->price
                 ]);
             }
+
+            $orderDetails = OrderDetail::where('order', $order->id)->get();
+
+            Mail::to('lucascabjnmro2@gmail.com')
+                ->send(new OrderCreated($order, $orderDetails));
+
+
             return redirect("/clients");
         } else {
             // Redirigir de nuevo a la vista

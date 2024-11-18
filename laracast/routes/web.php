@@ -27,13 +27,6 @@ Route::post('/login', [SessionController::class, 'newSession']);
 Route::post('/logout', [SessionController::class, 'destroy']);
 
 
-Route::get('/test', function () {
-    Mail::to('lucascabjnmro2@gmail.com')
-        ->send(new OrderCreated());
-    return "Done";
-});
-
-
 //Auntenticadas
 
 Route::middleware('auth') // Aplica el middleware de autenticación
