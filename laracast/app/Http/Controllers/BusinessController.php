@@ -5,7 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Adress;
 use App\Models\Alimento;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderDetail;
 use App\Models\User;
+use Dflydev\DotAccessData\Exception\DataException;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
@@ -92,6 +96,27 @@ class BusinessController extends Controller
             return $carrito->estado === 'ready';
         });
 
-        dd($todosActivos);
+        if ($todosActivos) {
+            $order = Order::create([
+                'vend_num' => $carritos[0]->vend_num,
+                'comp_num' => $carritos[0]->comp_num
+            ]);
+            foreach ($carritos as $carrito) {
+
+                OrderDetail::create([
+                    'order' => $order->id,
+                    'offer' => $carrito->offer_num,
+                    'cant' => $carrito->cant,
+                    'price' => $carrito->offer->price
+                ]);
+            }
+            return redirect("/clients");
+        } else {
+            // Redirigir de nuevo a la vista
+            return back()->withErrors([
+                'error' => 'No hay suficiente stock o la offerta caducó',
+                'comp_num' => $carritos[0]->comp_num
+            ]);
+        }
     }
 }

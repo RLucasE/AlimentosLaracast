@@ -28,9 +28,25 @@
                     </thead>
                     <tbody>
                         @foreach ($carritos as $detalleCar)
-                            <tr class="bg-gray-100 border-b">
+                            <tr class="bg-gray-100 border-b @if ($detalleCar->estado === 'noSuf') bg-red-100 @endif">
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
+                                    <div></div>
                                     {{ $detalleCar->offer->alimento->name }}
+                                    <div>
+                                        <form action="/deleteDetail" method="POST">
+                                            @csrf
+                                            @method('delete')
+                                            <input type="hidden" name="cart_id" value="{{ $detalleCar->id }}">
+                                            @if ($detalleCar->estado === 'noSuf')
+                                                <span class="font-semibold text-gray-500 text-xs">No
+                                                    disponible</span>
+                                            @endif
+                                            <button
+                                                class="font-semibold hover:text-red-500 text-gray-500 text-xs">Eliminar</button>
+
+
+                                        </form>
+                                    </div>
                                 </td>
                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                     {{ $detalleCar->cant }}
@@ -64,10 +80,13 @@
                         @foreach ($carritos as $carrito)
                             <input type="hidden" name="carrito_ids[]" value="{{ $carrito->id }}">
                         @endforeach
-                        <x-button :submit="true">Confirmar Compra</x-button>
+                        <x-button :submit="true">Confirmar Pago</x-button>
                     </form>
 
-                    <x-button>Cancelar Compra</x-button>
+                    <x-error-client :comp="$comprador->id"></x-error-client>
+
+
+
                 </div>
             </div>
         </div>
