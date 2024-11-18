@@ -8,8 +8,10 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionController;
+use App\Mail\OrderCreated;
 use App\Models\Adress;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Arr;
 use App\Models\Job;
 use App\Models\User;
@@ -24,6 +26,12 @@ Route::get('/login', [SessionController::class, 'login'])->name('login');
 Route::post('/login', [SessionController::class, 'newSession']);
 Route::post('/logout', [SessionController::class, 'destroy']);
 
+
+Route::get('/test', function () {
+    Mail::to('lucascabjnmro2@gmail.com')
+        ->send(new OrderCreated());
+    return "Done";
+});
 
 
 //Auntenticadas

@@ -137,6 +137,9 @@ class DatabaseSeeder extends Seeder
         $vendId = User::where('email', 'vendedor@gmail.com')->first()->id;
         $venAdress = Adress::where('user_num', $vendId)->first()->id;
 
+        $admId = User::where('email', 'adm@gmail.com')->first()->id;
+        $admAdress = Adress::where('user_num', $venAdress)->first()->id;
+
         OfferState::factory()->create([
             'offer_state' => 'act',
             'description' => 'La oferta se encuentra disponible para la venta'
@@ -155,6 +158,12 @@ class DatabaseSeeder extends Seeder
 
         Offer::factory()->create([
             'user_num' => $vendId,
+            'offer_adress' => $admAdress,
+            'estado' => 'act'
+        ]);
+
+        Offer::factory()->create([
+            'user_num' => $admId,
             'offer_adress' => $venAdress,
             'estado' => 'act'
         ]);
