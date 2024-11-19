@@ -10,6 +10,10 @@ class Offer extends Model
     /** @use HasFactory<\Database\Factories\OfferFactory> */
     use HasFactory;
 
+    protected $fillable = [
+        'estado'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class, 'user_num');

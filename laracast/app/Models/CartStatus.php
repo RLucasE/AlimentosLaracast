@@ -9,4 +9,6 @@ class CartStatus extends Model
 {
     /** @use HasFactory<\Database\Factories\CartStatusFactory> */
     use HasFactory;
+
+    protected $primaryKey = 'cart_status';
 }

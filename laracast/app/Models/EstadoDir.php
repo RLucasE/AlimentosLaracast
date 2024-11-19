@@ -9,4 +9,5 @@ class EstadoDir extends Model
 {
     /** @use HasFactory<\Database\Factories\EstadoDirFactory> */
     use HasFactory;
+    protected $primaryKey = 'estado_dir';
 }

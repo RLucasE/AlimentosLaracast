@@ -11,7 +11,9 @@ class OfferController extends Controller
 
     public function indexAll()
     {
-        $offers = Offer::with('alimento')->get();
+        $offers = Offer::with('alimento')
+            ->where('estado', 'act')
+            ->get();
         return view('offers.index', [
             'offers' => $offers
         ]);

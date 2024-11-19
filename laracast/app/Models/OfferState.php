@@ -9,4 +9,5 @@ class OfferState extends Model
 {
     /** @use HasFactory<\Database\Factories\OfferStateFactory> */
     use HasFactory;
+    protected $primaryKey = 'offer_state';
 }

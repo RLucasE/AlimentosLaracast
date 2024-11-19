@@ -10,7 +10,7 @@ class UserType extends Model
     /** @use HasFactory<\Database\Factories\UserTypeFactory> */
     use HasFactory;
 
-    // protected $primaryKey = 'user_type';
+    protected $primaryKey = 'user_type';
     // public $incrementing = false; // Esto debe ser falso si 'user_type' no es autoincremental
     // protected $keyType = 'string';
 

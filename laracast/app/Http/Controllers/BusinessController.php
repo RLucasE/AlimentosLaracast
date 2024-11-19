@@ -6,6 +6,7 @@ use App\Mail\OrderCreated;
 use App\Models\Adress;
 use App\Models\Alimento;
 use App\Models\Cart;
+use App\Models\Offer;
 use App\Models\Order;
 use App\Models\OrderDetail;
 use App\Models\User;
@@ -105,18 +106,27 @@ class BusinessController extends Controller
             ]);
             foreach ($carritos as $carrito) {
 
-                OrderDetail::create([
+                $ord = OrderDetail::create([
                     'order' => $order->id,
                     'offer' => $carrito->offer_num,
                     'cant' => $carrito->cant,
                     'price' => $carrito->offer->price
                 ]);
+
+                $offer = Offer::find($carrito->offer_num);
+                if ($offer->cant <= 0) {
+                    $offer->update([
+                        'estado' => 'cerr'
+                    ]);
+                }
+
+                $carrito->delete();
             }
 
             $orderDetails = OrderDetail::where('order', $order->id)->get();
 
-            Mail::to('lucascabjnmro2@gmail.com')
-                ->send(new OrderCreated($order, $orderDetails));
+            // Mail::to('lucascabjnmro2@gmail.com')
+            //     ->send(new OrderCreated($order, $orderDetails));
 
 
             return redirect("/clients");
