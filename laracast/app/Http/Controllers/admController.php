@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Adress;
+use App\Models\Alimento;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+
 
 class admController extends Controller
 {
@@ -38,5 +42,17 @@ class admController extends Controller
                 return redirect("/adresses");
             }
         }
+    }
+
+    public function getGetAliPDF()
+    {
+        $ventasAli = DB::select('select * from reporte_alimento()');
+
+        $data = [
+            'ventasAli' => $ventasAli
+        ];
+        $pdf = Pdf::loadView('pdfs.foods-sells', $data);
+
+        return $pdf->stream('reporte de comidas.pdf');
     }
 }

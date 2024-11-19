@@ -49,7 +49,7 @@ class AlimentoController extends Controller
 
 
 
-        // Store the user...
+
 
         Alimento::create([
             'name' => request('name'),
@@ -107,6 +107,18 @@ class AlimentoController extends Controller
 
 
         return redirect('/foods/' . $alimento->id);
+    }
+
+    public function storeAlimVen(Request $request)
+    {
+
+        Alimento::create([
+            'name' => request('name'),
+            'alimento_state' => 1,
+            'alimento_type' => request('alimento_type')
+        ]);
+
+        return redirect('/offersMy');
     }
 
     public function delete(Request $request, string $id)

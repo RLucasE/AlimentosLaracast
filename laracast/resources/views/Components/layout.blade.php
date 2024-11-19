@@ -59,7 +59,7 @@
                                 <!-- El botón solo se muestra si el usuario es administrador -->
                                 <x-nav-link href="/foods" :active="request()->is('foods')">Comidas</x-nav-link>
                                 <x-nav-link href="/adresses" :active="request()->is('adresses')">Direcciones</x-nav-link>
-                                <x-nav-link href="/jobs" :active="request()->is('jobs')">Usuarios</x-nav-link>
+                                <x-nav-link href="/reporteAlimentos" :active="request()->is('reporteAlimentos')">Reportes</x-nav-link>
                             @endcan
                         </div>
 

@@ -1,7 +1,7 @@
 <x-layout>
     <x-slot:heading>
         <div class="flex space-x-4">
-
+            {{-- <x-button href='/createAlim'>Nuevo Alimento</x-button> --}}
         </div>
     </x-slot:heading>
     <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -17,6 +17,9 @@
                         @endforeach
                     </select>
                 </div>
+                <a href="/createAlim" class="font-semibold text-indigo-600 hover:text-indigo-500">¿No está el alimento
+                    que
+                    quieres?</a>
             </div>
 
             <div>

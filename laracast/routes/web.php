@@ -44,6 +44,7 @@ Route::middleware('auth') // Aplica el middleware de autenticación
 
                 Route::get('/adresses', [admController::class, 'adresses']);
                 Route::patch('/changeStatusAdress', [admController::class, 'changeStatusAdress']);
+                Route::get('/reporteAlimentos', [admController::class, 'getGetAliPDF']);
             });
     });
 
@@ -62,11 +63,15 @@ Route::middleware('auth') // Aplica el middleware de autenticación
                 Route::get('/offersMy', [OfferController::class, 'indexMy']);
                 Route::get('/myOffer/{id}', [OfferController::class, 'showMyOffer']);
 
+
+
                 Route::get('/myBusiness', [BusinessController::class, 'main']);
                 Route::get('/createOffer', [BusinessController::class, 'create']);
                 Route::post('/createOffer', [BusinessController::class, 'storeOffer']);
                 Route::get('/clients', [BusinessController::class, 'clients']);
                 Route::post('/confirm', [BusinessController::class, 'confirm']);
+                Route::get('/createAlim', [BusinessController::class, 'createAlim']);
+                Route::post('/createAlim', [AlimentoController::class, 'storeAlimVen']);
             });
     });
 

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\OrderCreated;
 use App\Models\Adress;
 use App\Models\Alimento;
+use App\Models\AlimentoType;
 use App\Models\Cart;
 use App\Models\Offer;
 use App\Models\Order;
@@ -58,7 +59,7 @@ class BusinessController extends Controller
 
     public function create()
     {
-        $alimentos = Alimento::all();
+        $alimentos = Alimento::where('alimento_state', "2")->get();
         return view('business.createOffer', [
             "alimentos" => $alimentos
         ]);
@@ -66,7 +67,24 @@ class BusinessController extends Controller
 
     public function storeOffer(Request $request)
     {
-        dd($request);
+        $userAdress = Adress::where('user_num', Auth::user()->id)->first();
+        $alimento = Alimento::where('id', $request['alimento-offer'])->first();
+
+        if (!$userAdress || $userAdress->estado !== 'Apr' || !$alimento || $alimento->alimento_state === 1) {
+            abort(403);
+        }
+        Offer::create([
+            'user_num' => Auth::user()->id,
+            'alimento_num' => $alimento->id,
+            'description' => $request['OfferDescription'],
+            'offer_adress' => $userAdress->id,
+            'estado' => 'act',
+            'price' => $request['price-offer'],
+            'cant' => $request['cant-offer']
+
+        ]);
+
+        return redirect("/offersMy");
     }
 
     public function clients()
@@ -87,6 +105,14 @@ class BusinessController extends Controller
         return view('business.clients', [
             'compradores' => $compradores,
             'carritos' => $carritos
+        ]);
+    }
+
+    public function createAlim()
+    {
+        $alimentoTypes = AlimentoType::all();
+        return view('business.createAlim', [
+            'alimentoTypes' => $alimentoTypes
         ]);
     }
 

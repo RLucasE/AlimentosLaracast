@@ -11,7 +11,13 @@ class Offer extends Model
     use HasFactory;
 
     protected $fillable = [
-        'estado'
+        'user_num',
+        'alimento_num',
+        'description',
+        'offer_adress',
+        'estado',
+        'price',
+        'cant'
     ];
 
     public function user()
