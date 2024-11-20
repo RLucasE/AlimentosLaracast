@@ -65,9 +65,12 @@ Route::middleware('auth') // Aplica el middleware de autenticación
 
 
 
+
                 Route::get('/myBusiness', [BusinessController::class, 'main']);
                 Route::get('/createOffer', [BusinessController::class, 'create']);
                 Route::post('/createOffer', [BusinessController::class, 'storeOffer']);
+                Route::get('editDir', [BusinessController::class, 'editDir']);
+                Route::patch('/newVend', [BusinessController::class, 'actDirUser']);
                 Route::get('/clients', [BusinessController::class, 'clients']);
                 Route::post('/confirm', [BusinessController::class, 'confirm']);
                 Route::get('/createAlim', [BusinessController::class, 'createAlim']);

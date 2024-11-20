@@ -116,6 +116,28 @@ class BusinessController extends Controller
         ]);
     }
 
+    public function editDir()
+    {
+        return view("business.edit-dir");
+    }
+
+    public function actDirUser(Request $request)
+    {
+        $adress = Adress::where('user_num', Auth::user()->id)->first();
+
+        $newAdress = $adress->update([
+            'ciudad' => $request['Ciudad'],
+            'cod_post' => $request['cod_post'],
+            'calle' => $request['calle'],
+            'numero' => $request['numero'],
+            'piso' => $request['piso'],
+            'estado' => 'Rev',
+            'user_num' => Auth::user()->id
+        ]);
+
+        return redirect('/offersMy');
+    }
+
     public function confirm(Request $request)
     {
         $carritoIds = $request->input('carrito_ids');
@@ -151,8 +173,9 @@ class BusinessController extends Controller
 
             $orderDetails = OrderDetail::where('order', $order->id)->get();
 
-            // Mail::to('lucascabjnmro2@gmail.com')
-            //     ->send(new OrderCreated($order, $orderDetails));
+            //order->user_num->email
+            Mail::to('lucascabjnmro2@gmail.com')
+                ->send(new OrderCreated($order, $orderDetails));
 
 
             return redirect("/clients");

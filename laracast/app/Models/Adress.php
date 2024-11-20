@@ -19,4 +19,9 @@ class Adress extends Model
         'estado',
         'user_num'
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_num', 'id');
+    }
 }

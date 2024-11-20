@@ -2,10 +2,7 @@
     <x-slot:heading>
         <div class="flex space-x-4">
             <div>
-                <x-button href='/adress/create'>Cambiar Direccion</x-button>
-            </div>
-            <div>
-                <x-button href='/foods/create'>Borrar Direccion</x-button>
+                <x-button href='/editDir'>Cambiar Direccion</x-button>
             </div>
         </div>
     </x-slot:heading>
